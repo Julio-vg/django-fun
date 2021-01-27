@@ -1,0 +1,20 @@
+Todos os artigo de um reporter:
+
+>>> Article.objects.all().filter(reporter=r2)
+<QuerySet [<Article: Another Test>, <Article: Life of a dog>, <Article: Test Test>]>
+
+Artigos Entre 2020-2019:
+
+>>> Article.objects.all().filter(pub_date__year='2020') | Article.objects.all().filter(pub_date__year='2019')
+<QuerySet [<Article: Java The Language>, <Article: U.F.O>]>
+
+Artigo de python publicado em 2015:
+>>> Article.objects.filter(headline__contains='Python') & Article.objects.filter(reporter=r1) & Article.objects.filter(pub_date__contains='2015-04')
+<QuerySet [<Article: Python The Language>]>
+
+Publicações que contem a letra i:
+>>> Publication.objects.filter(title__icontains='i')
+<QuerySet [<Publication: Aliens>, <Publication: JS Stories>, <Publication: Java Stories>, 
+<Publication: Mysterious Places>, <Publication: Programming Languanges>, <Publication: Python Stories>, <Publication: The Python Diary>]>
+
+
