@@ -18,3 +18,15 @@ Publicações que contem a letra i:
 <Publication: Mysterious Places>, <Publication: Programming Languanges>, <Publication: Python Stories>, <Publication: The Python Diary>]>
 
 
+Reporter com mais artigos em 2020:
+
+>>> a= Reporter.objects.filter(article__pub_date__year='2020').annotate(num_articles=Count('article')).order_by('-num_articles')[0]
+>>> a
+<Reporter: John Smith>
+
+
+Média de Publicações por Artigos:
+
+ p = Article.objects.annotate(num_pub=Count('publications')).aggregate(Avg('num_pub'))
+>>> p
+{'num_pub__avg': 0.7}
